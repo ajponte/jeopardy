@@ -1,0 +1,13 @@
+swagger: "2.0"
+
+info:
+   description:  "API for the Jeopardy application."
+   version: 1.0
+   title: Jeopardy application
+
+schemes: [http, https]
+
+basePath: /v1/jeopardy
+
+paths:
+  /questions/{sessionId}: { ref: questions.sessionId.yml }

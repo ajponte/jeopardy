@@ -1,0 +1,11 @@
+---
+  name: question
+  description:  Jeopardy question.
+  type: object
+  properties:
+    questionId:
+      type: integer
+      format: int64
+    text:
+      description:  The text of the question.
+      type: string

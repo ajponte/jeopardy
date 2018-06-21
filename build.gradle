@@ -7,12 +7,35 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+                classpath('io.swagger:swagger-codegen:2.2.3')
 	}
+
+   configurations {
+      swagger
+   }
+
+   sourceSets {
+      swagger {
+         compileClasspath = configurations.swaggerCompile
+         java {
+            srcDir file ("${project.buildDir.path/swagger/src/main/java}")
+         } 
+      }
+      main {
+         compileClasspath += swagger.output
+         runtimeClasspath += swagger.output
+      }
+      test {
+         compileClasspath += swagger.output
+         compileClasspath += swagger.output
+      }
+   }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'idea'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
