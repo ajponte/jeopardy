@@ -1,0 +1,72 @@
+---
+
+parameters:
+  - name: answerId
+    in: path
+    description:  Id of the answer for which the questions match.
+    required: true
+    type: string
+
+get:
+  sumarry:  Returns all questions related to the answer.
+  operationId: getQuestions
+  consumes: application/json
+  produces:  appliction/json
+  responses:
+    200:
+      description:  Operation successful, questions will be returned.
+      schema: { $ref: '#definitions/GetQuestionsResponse'}
+    400:
+      description:  Bad request.
+    404:
+      description:  No questions found for given answer id.
+    500:
+      description:  Internal Server Error.
+put:
+  summary:  Add a new question for the answer
+  operationId:  addQuestion
+  consumes: application/json
+  produces: application/json
+  parameters:
+    name: questionText
+    in: body
+    description: >
+      The text of a new question to add to the answer.
+      It is assumed that a new questionId will be generated
+      as a result of a successful add operation.
+    type: string
+    required: true
+  responses:
+    202:
+      description:  Operation successful, new question was added.
+    400:
+      description:  Bad request.
+    404:
+      description:  No questions found for given answer id.
+    500:
+      description:  Internal Server Error.
+delete:
+  sumarry:  Remove a question associated with the answer.
+  operationId: removeQuestion
+  consumes: application/json
+  produces: application/json
+  parameters:
+    name: questionId
+    in: query
+    description: >
+      Removes a question by ID from the answer it is associated with.
+  responses:
+    202:
+      description:  Operation successful, question was removed.
+    400:
+      description: Bad Request
+    404:
+      description: No question found for given id.
+
+
+definitions:
+  GetQuestionsResponse:
+    properties:
+      questions:
+        type: array
+        items: {$ref: model/Question.yml}

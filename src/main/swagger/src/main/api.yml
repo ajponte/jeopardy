@@ -7,7 +7,12 @@ info:
 
 schemes: [http, https]
 
-basePath: /v1/jeopardy
+basePath: /v1
 
 paths:
-  /questions/{sessionId}: { ref: questions.sessionId.yml }
+  # Get/update all questions for a particular answer.
+  /questions/{answerId}: { ref: questions.answerId.yml }
+  # Get/update all available answers in a Jeopardy game session.
+  /answers/{sessionId}: { $ref: answers.sessionId.yml }
+  # Returns the Jeopardy game session.
+  /session/{sessionId}: { $ref: session.yml }

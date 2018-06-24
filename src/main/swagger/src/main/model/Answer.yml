@@ -1,0 +1,23 @@
+---
+name: Answer
+description: >
+  Jeopardy answer which contains potential questions which
+  yield this particular answer.
+type: object
+properties:
+  answerId:
+    type: integer
+    format: int64
+  text:
+    type: string
+    description: The text of the question.
+  points:
+    type: integer
+    description:  The number of points this answer is worth.
+  category:
+    type: string
+    description: >
+      The category this question belongs to (i.e. data structures, algorithms,...)
+  questions:
+    type: array
+    items: { $ref: Question.yml }

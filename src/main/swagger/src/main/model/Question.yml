@@ -1,5 +1,5 @@
 ---
-  name: question
+  name: Question
   description:  Jeopardy question.
   type: object
   properties:
