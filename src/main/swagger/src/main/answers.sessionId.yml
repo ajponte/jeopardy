@@ -1,0 +1,76 @@
+---
+parameters:
+  - name: sessionId
+    in: path
+    description: >
+      Id of the session which holds the available answers.
+    required: true
+    type: string
+
+get:
+  sumarry:  Returns all available ansers in the session.
+  operationId:  getAnswers
+  consumes: application/json
+  produces: application/json
+  responses:
+    200:
+      description:  Operation successful, answers will be returned.
+      schema: { $ref: '#definitions/GetAnswersResponse' }
+    400:
+      description:  Bad request.
+    404:
+      description: No questions answers found for given session id.
+    500:
+      description: Internal Server Error.
+
+put:
+  summary:  Add a new answer to the session.
+  operationId: addAnswer
+  consumes: application/json
+  produces: application/json
+  parameters:
+    name: answer
+      in: body
+      parameters:
+        - name: answerText
+          description: >
+            The text of the answer to add to the session.
+            It is assumed that a new answerId will be generated
+            as a result of a successful add operation.
+          type: string
+        - name: points
+          description: >
+            The amount of points this answer is worth.
+          type: integer
+  responses:
+    202:
+      description: Operation successful, new answer was added to the session.
+    400:
+      description:  Bad request.
+    500:
+      description: Internal Server Error.
+
+delete:
+  summary:  Remove an answer from the session.
+  operationId: removeAnswer
+  consumes: application/json
+  produces: application/json
+  parameters:
+    name: answerId
+    in: query
+    description: >
+      Removes an answer by id from the session.
+  responses:
+    202:
+      description: Operation successful, answer was removed.
+    400:
+      description: Bad Request
+    404:
+      description: No answer found for given id.
+
+definitions:
+  GetAnswersResponse:
+    properties:
+      answers:
+        type: array
+        items: { $ref: model/Answer.yml }

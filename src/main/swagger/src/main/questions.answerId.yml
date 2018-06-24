@@ -15,7 +15,7 @@ get:
   responses:
     200:
       description:  Operation successful, questions will be returned.
-      schema: { $ref: '#definitions/GetQuestionsResponse'}
+      schema: { $ref: '#definitions/GetQuestionsResponse' }
     400:
       description:  Bad request.
     404:
@@ -41,8 +41,6 @@ put:
       description:  Operation successful, new question was added.
     400:
       description:  Bad request.
-    404:
-      description:  No questions found for given answer id.
     500:
       description:  Internal Server Error.
 delete:
@@ -69,4 +67,4 @@ definitions:
     properties:
       questions:
         type: array
-        items: {$ref: model/Question.yml}
+        items: { $ref: model/Question.yml }
