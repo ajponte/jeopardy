@@ -2,8 +2,6 @@ plugins {
     id 'org.hidetake.swagger.generator' version '2.12.0'
 }
 
-apply plugin: java
-
 repositories {
     jcenter()
 }
@@ -14,8 +12,8 @@ dependencies {
 }
 
 swaggerSources {
-    jepardy {
-        inputFile = file('src/main/api.yaml')
+    jeopardy {
+        inputFile = file('./src/main/api.yml')
         code {
             language = 'spring'
             configFile = file('config.json')

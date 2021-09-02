@@ -1,0 +1,14 @@
+---
+name: Session
+description: >
+  Holds the state of the current Jeopardy session.
+type: object
+properties:
+  answers:
+    type: array
+    description:  The answers available in this session.
+    items: { $ref: Answer.yml }
+  players:
+    type: array
+    description:  The players in this session.
+    items: { $ref: Player.yml }

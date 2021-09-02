@@ -1,0 +1,11 @@
+---
+name: Player
+description: >
+  A player in a session of Jeopardy.
+properties:
+  currentMove:
+    type: boolean
+    description: If true, the player is ready to make a move.
+  currentPoints:
+    type: integer
+    description:  The number of points the player has accumulated.

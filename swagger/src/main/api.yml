@@ -1,0 +1,18 @@
+swagger: "2.0"
+
+info:
+   description:  "API for the Jeopardy application."
+   version: 1.0
+   title: Jeopardy application
+
+schemes: [http, https]
+
+basePath: /v1
+
+paths:
+  # Get/update all questions for a particular answer.
+  /questions/{answerId}: { ref: questions.answerId.yml }
+  # Get/update all available answers in a Jeopardy game session.
+  /answers/{sessionId}: { $ref: answers.sessionId.yml }
+  # Returns the Jeopardy game session.
+  /session/{sessionId}: { $ref: session.yml }
